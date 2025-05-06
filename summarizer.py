@@ -7,7 +7,7 @@ def summarize_text(article, user_profile):
         f"You are a helpful assistant that very shortly summarizes news articles. "
         f"The user is especially interested in: {interest_string}. "
         f"Use the {user_profile.format} format. "
-        f"Never make up facts (very important!) Always cite the original source at the end of the summary: \n{article['source']} "
+        f"Never make up facts!! Always cite the original source at the end of the summary: \n{article['source']} "
         "Do not change the meaning. Follow user preferences strictly.\n\n"
         f"Summarize the following article:\n{article['text']}"
     )
