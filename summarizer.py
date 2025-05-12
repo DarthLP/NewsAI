@@ -1,15 +1,19 @@
 import subprocess
 import json
 
-def summarize_text(article, user_profile):
+def summarize_text(articles, user_profile):
     interest_string = ", ".join(user_profile.interests)
+    combined_text = "\n\n".join(
+        f"Source: {article['source']}\nText: {article['text']}" for article in articles
+    )
+    sources = ", ".join(set(article['source'] for article in articles))
+
     prompt = (
-        f"You are a helpful assistant that very shortly summarizes news articles. "
+        f"You are a helpful assistant that summarizes multiple news articles into short bullet points. Combine insights from all sources and keep it really short."
         f"The user is especially interested in: {interest_string}. "
-        f"Use the {user_profile.format} format. "
-        f"Never make up facts!! Always cite the original source at the end of the summary: \n{article['source']} "
-        "Do not change the meaning. Follow user preferences strictly.\n\n"
-        f"Summarize the following article:\n{article['text']}"
+        f"Use the {user_profile.format} format and follow user preferences strictly."
+        f"Never make up facts (very important!) and do not change the meaning."
+        f"Summarize the following articles:\n{combined_text}"
     )
 
     result = subprocess.run(
