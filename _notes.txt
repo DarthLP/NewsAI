@@ -2,5 +2,3 @@
         $ conda activate newsai_env                                                                                                                                        
     Deactivate environment:
         $ conda deactivate
-
--   OpenAI API-Key: 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
